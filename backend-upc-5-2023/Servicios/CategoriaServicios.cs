@@ -96,5 +96,10 @@ namespace backend_upc_5_2023.Servicios
             var result = DBManager.Instance.SetData(sql, parameters);
             return result;
         }
+
+        internal static object GetByNombre(string nombre)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

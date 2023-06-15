@@ -4,6 +4,7 @@ using backend_upc_5_2023.Connection;
 using backend_upc_5_2023.Dominio;
 using backend_upc_5_2023.Servicios;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace backend_upc_5_2023.Controllers
 {
@@ -97,6 +98,7 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
+
         /// <summary>
         /// Updates the specified categoria.
         /// </summary>
@@ -124,8 +126,14 @@ namespace backend_upc_5_2023.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("DeleteCategoria")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, bool confirmDelete = false)
         {
+            if (!confirmDelete)
+            {
+                
+                return StatusCode((int)HttpStatusCode.Conflict, "Confirmation required");
+            }
+
             try
             {
                 var result = CategoriaServicios.Delete(id);
